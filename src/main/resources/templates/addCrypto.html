@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Crypto</title>
+    <style>
+        form {
+            width: 50%;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Add Cryptocurrency</h1>
+<form th:action="@{/portfolio/add}" th:object="${crypto}" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="symbol">Symbol</label>
+        <input type="text" id="symbol" th:field="*{symbol}" required>
+    </div>
+    <div>
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" th:field="*{amount}" required>
+    </div>
+    <button type="submit">Add Crypto</button>
+</form>
+</body>
+</html>

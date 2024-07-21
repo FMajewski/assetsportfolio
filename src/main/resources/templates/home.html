@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Portfolio</title>
+    <style>
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .add-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .add-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Crypto Portfolio</h1>
+<div class="button-container">
+    <a class="add-button" th:href="@{/portfolio/add}">Add Crypto</a>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Symbol</th>
+        <th>Amount</th>
+        <th>Market Value (USD)</th>
+        <th>Price (USD)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="crypto : ${cryptos}">
+        <td th:text="${crypto.key}"></td>
+        <td th:text="${crypto.value.amount}"></td>
+        <td th:text="${crypto.value.marketValue}"></td>
+        <td th:text="${crypto.value.price}"></td>
+    </tr>
+    </tbody>
+</table>
+<h2 style="text-align: center;">Top 15 Cryptocurrencies</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Current Price</th>
+        <th>Change 24h</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="topCrypto : ${topCryptos}">
+        <td th:text="${topCrypto.name}">Name</td>
+        <td th:text="${topCrypto.symbol}">Symbol</td>
+        <td th:text="${topCrypto.currentPrice}">Current Price</td>
+        <td th:text="${topCrypto.priceChange24h}">Change 24h</td>
+    </tr>
+    </tbody>
+</table>
+<h2 style="text-align: center;">Top Stocks Gainers</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Symbol</th>
+        <th>Current Price</th>
+        <th>Change %</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="topGainer : ${topGainers}">
+        <td th:text="${topGainer.symbol}">Symbol</td>
+        <td th:text="${topGainer.currentPrice}">Current Price</td>
+        <td th:text="${topGainer.changePercentage}">Change %</td>
+    </tr>
+    </tbody>
+</table>
+<h2 style="text-align: center;">Top currencies</h2>
+<table>
+    <thead>
+    <tr>
+        <th>currency</th>
+        <th>Current Price</th>
+        <th>Change 24h</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="topCrypto : ${topCryptos}">
+        <td th:text="${topCrypto.symbol}">Currency</td>
+        <td th:text="${topCrypto.currentPrice}">Current Price</td>
+        <td th:text="${topCrypto.priceChange24h}">Change 24h</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
