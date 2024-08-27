@@ -3,16 +3,14 @@ package portfolio.porfolio.Controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import portfolio.porfolio.model.DetailedCryptoInfo;
+import portfolio.porfolio.model.Crypto;
 import portfolio.porfolio.model.TopCryptoInfo;
 import portfolio.porfolio.service.CryptoPriceService;
 import portfolio.porfolio.service.CryptoService;
-import portfolio.porfolio.model.Crypto;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -30,11 +28,6 @@ public class CryptoController {
     @GetMapping
     public List<Crypto> showAllAddedCrypto() {
         return cryptoService.showAllAddedCryptos();
-    }
-
-    @GetMapping("/summarized")
-    public Mono<Map<String, DetailedCryptoInfo>> getSummarizedCryptos() {
-        return cryptoService.getSummarizedCryptos();
     }
 
     @PostMapping("/prices")

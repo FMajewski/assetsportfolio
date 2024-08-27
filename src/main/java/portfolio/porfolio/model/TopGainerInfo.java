@@ -16,7 +16,7 @@ public class TopGainerInfo {
     private double changeAmount;
 
     @JsonProperty("change_percentage")
-    private String changePercentage;  // Keeping it as String to handle percentage formatting
+    private String changePercentage;
 
     @JsonProperty("volume")
     private long volume;

@@ -23,4 +23,6 @@ public class Crypto {
     private String symbol;
     private String name;
     private double amount;
+    private double marketValue;
+    private double price;
 }

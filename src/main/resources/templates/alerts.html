@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Alerty</title>
+  <style>
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .add-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .add-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Alerty kryptowalutowe</h1>
+
+<!-- Formularz do dodawania alertu -->
+<form method="post" action="/alerts/add" style="text-align: center; margin-bottom: 20px;">
+  <label for="cryptoSymbol">Kryptowaluta:</label>
+  <input type="text" id="cryptoSymbol" name="cryptoSymbol" required>
+
+  <label for="targetPrice">Cena docelowa:</label>
+  <input type="number" step="0.01" id="targetPrice" name="targetPrice" required>
+
+  <button type="submit" class="add-button">Dodaj alert</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>Kryptowaluta</th>
+    <th>Cena docelowa</th>
+    <th>Akcja</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="alert : ${alerts}">
+    <td th:text="${alert.cryptoSymbol}"></td>
+    <td th:text="${alert.targetPrice}"></td>
+    <td>
+      <form method="post" th:action="@{/alerts/delete/{id}(id=${alert.id})}">
+        <button type="submit">Usuń</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <a class="add-button" th:href="@{/portfolio}">Powrót do portfela</a>
+</div>
+
+</body>
+</html>

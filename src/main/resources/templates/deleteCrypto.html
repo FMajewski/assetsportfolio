@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Crypto</title>
-    <style>
+  <title>Delete Crypto</title>
+  <style>
         form {
             width: 50%;
             margin: auto;
@@ -36,21 +36,21 @@
     </style>
 </head>
 <body>
-<h1 style="text-align: center;">Add Cryptocurrency</h1>
-<form th:action="@{/portfolio/add}" th:object="${crypto}" method="post">
-    <div>
-        <label for="name">symbol</label>
-        <input type="text" id="name" th:field="*{name}" required>
-    </div>
-    <div>
-        <label for="symbol">full name</label>
-        <input type="text" id="symbol" th:field="*{symbol}" required>
-    </div>
-    <div>
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" step="0.000000001" th:field="*{amount}" required>
-    </div>
-    <button type="submit" th:href="@{/portfolio}">Add Crypto</button>
+<h1 style="text-align: center;">Delete Cryptocurrency</h1>
+<form th:action="@{/portfolio/delete}" th:object="${crypto}" method="post">
+  <div>
+    <label for="name">symbol</label>
+    <input type="text" id="name" th:field="*{name}" required>
+  </div>
+  <div>
+    <label for="symbol">full name</label>
+    <input type="text" id="symbol" th:field="*{symbol}" required>
+  </div>
+  <div>
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" step="0.00000001" th:field="*{amount}" required>
+  </div>
+  <button type="submit" th:href="@{/portfolio}">delete Crypto</button>
 </form>
 </body>
 </html>

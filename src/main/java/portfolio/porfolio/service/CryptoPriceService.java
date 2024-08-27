@@ -32,12 +32,17 @@ public class CryptoPriceService {
     public Mono<Map<String, Double>> getCryptoPrices(List<String> symbols) {
         String ids = String.join(",", symbols).toLowerCase();
         String url = String.format(apiUrl, ids);
+
         return webClientBuilder.build()
                 .get()
                 .uri(url)
                 .header("Authorization", "Bearer " + apiKey)
                 .retrieve()
                 .bodyToMono(CryptoPriceResponse.class)
+                .doOnNext(response -> {
+                    // Logowanie odpowiedzi z API
+                    System.out.println("API response: " + response);
+                })
                 .map(response -> symbols.stream()
                         .collect(Collectors.toMap(
                                 symbol -> symbol,
@@ -46,7 +51,10 @@ public class CryptoPriceService {
                                     if (priceMap != null && priceMap.get("usd") != null) {
                                         return priceMap.get("usd");
                                     } else {
+                                        // Logowanie problemu przed rzuceniem wyjątku
+                                        System.out.println("Price map for symbol: " + symbol + " is null or missing 'usd'");
                                         throw new RuntimeException("Could not fetch price for symbol: " + symbol);
+
                                     }
                                 }
                         )));
@@ -60,6 +68,4 @@ public class CryptoPriceService {
                 .bodyToFlux(TopCryptoInfo.class)
                 .collectList();
     }
-
-
 }
